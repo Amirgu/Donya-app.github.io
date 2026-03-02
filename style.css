@@ -4,32 +4,32 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    height: 100vh;
     background-color: #f0c0d0;
     font-family: 'Arial', sans-serif;
 }
 
 .card {
     background-color: white;
-    padding: 66px;
-    border-radius: 24px;
+    padding: 40px;
+    border-radius: 20px;
     text-align: center;
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.12);
-    max-width: 94%;
-    width: 580px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    max-width: 90%;
+    width: 400px;
     position: relative;
     overflow: hidden;
 }
 
 .cat-img {
-    width: 132px;
+    width: 100px;
     height: auto;
 }
 
 .question {
-    font-size: 32px;
+    font-size: 24px;
     color: #333;
-    margin: 22px 0;
+    margin: 20px 0;
 }
 
 .button-container {
@@ -37,7 +37,7 @@ body {
     justify-content: center;
     align-items: center;
     gap: 20px;
-    height: 120px;
+    height: 60px;
     position: relative;
 }
 
@@ -54,12 +54,12 @@ button {
 #yesBtn {
     background-color: #e91e63;
     color: white;
-    padding: 16px 42px;
-    font-size: 22px;
-    transform-origin: center;
+    padding: 15px 40px;
+    font-size: 20px;
 }
 
 #yesBtn:hover {
+    transform: scale(1.05);
     background-color: #d81b60;
 }
 
@@ -68,11 +68,10 @@ button {
     color: #666;
     position: absolute;
     right: 40px;
-    top: 38px;
 }
 
 .subtext {
-    font-size: 15px;
+    font-size: 12px;
     color: #888;
     margin-top: 20px;
 }
