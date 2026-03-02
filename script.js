@@ -5,25 +5,49 @@ const subtext = document.getElementById('subtext');
 const yayContainer = document.getElementById('yayContainer');
 const buttonContainer = document.querySelector('.button-container');
 
+let yesScale = 1;
+
+function growYesButton() {
+    yesScale = Math.min(yesScale + 0.12, 2.8);
+    yesBtn.style.transform = `scale(${yesScale})`;
+}
+
 function moveNoButton() {
     const containerRect = buttonContainer.getBoundingClientRect();
     const btnRect = noBtn.getBoundingClientRect();
 
-    const newLeft = Math.random() * (containerRect.width - btnRect.width);
-    const newTop = Math.random() * (containerRect.height - btnRect.height);
+    const maxLeft = containerRect.width - btnRect.width;
+    const maxTop = containerRect.height - btnRect.height;
+
+    const newLeft = Math.max(0, Math.random() * maxLeft);
+    const newTop = Math.max(0, Math.random() * maxTop);
 
     noBtn.style.left = `${newLeft}px`;
     noBtn.style.top = `${newTop}px`;
+    noBtn.style.transform = 'translate(0, 0)';
 
-    if (noBtn.style.position !== 'absolute') {
-        noBtn.style.position = 'absolute';
-    }
+    growYesButton();
 }
 
-noBtn.addEventListener('mouseover', moveNoButton);
-noBtn.addEventListener('touchstart', (e) => {
-    e.preventDefault();
-    moveNoButton();
+['mouseenter', 'mouseover', 'touchstart', 'focus', 'pointerdown'].forEach((eventName) => {
+    noBtn.addEventListener(eventName, (event) => {
+        if (eventName === 'touchstart' || eventName === 'pointerdown') {
+            event.preventDefault();
+        }
+        moveNoButton();
+    });
+});
+
+buttonContainer.addEventListener('mousemove', (event) => {
+    const noRect = noBtn.getBoundingClientRect();
+    const distance = Math.hypot(
+        event.clientX - (noRect.left + noRect.width / 2),
+        event.clientY - (noRect.top + noRect.height / 2)
+    );
+
+    if (distance < 90) {
+        moveNoButton();
+    }
 });
 
 yesBtn.addEventListener('click', () => {
