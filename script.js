@@ -27,7 +27,7 @@ noBtn.addEventListener('touchstart', (e) => {
 });
 
 yesBtn.addEventListener('click', () => {
-    questionText.innerHTML = 'nirali will you be my valentine? <br> YAY! 🎉';
+    questionText.innerHTML = 'donya will you be my valentine? <br> YAY! 🎉';
     buttonContainer.style.display = 'none';
     subtext.style.display = 'none';
     yayContainer.style.display = 'block';
