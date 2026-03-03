@@ -156,7 +156,7 @@ document.addEventListener('touchstart', (event) => {
 
 // YES button click — celebrate!
 yesBtn.addEventListener('click', () => {
-    questionText.innerHTML = 'donya will you be my valentine? <br> YAY! 🎉';
+    questionText.innerHTML = 'wanna go on a date donya ? <br> YAY! 🎉';
     buttonContainer.style.display = 'none';
     subtext.style.display = 'none';
     yayContainer.style.display = 'block';
