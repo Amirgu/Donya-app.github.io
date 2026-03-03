@@ -127,7 +127,7 @@ button {
     display: block;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 768px) and (hover: none) and (pointer: coarse) {
     .mobile-block {
         display: flex;
     }
