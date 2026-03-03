@@ -7,6 +7,18 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <audio id="bgMusic" loop>
+        <source src="Spring 1 - Recomposed Vivaldis Four Seasons (2012).mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="splash" id="splash">
+        <div class="splash-content">
+            <span class="splash-icon">🔊</span>
+            <h1>Active le volume</h1>
+            <button id="startBtn" class="splash-btn">C'est fait</button>
+        </div>
+    </div>
+
     <div class="mobile-block" id="mobileBlock">
         <div class="mobile-block-content">
             <span class="mobile-block-icon">🖥️</span>
@@ -15,7 +27,7 @@
         </div>
     </div>
 
-    <div class="card">
+    <div class="card" style="display: none;">
         <img src="https://cdn-icons-png.flaticon.com/512/1864/1864514.png" alt="Cute Cat" class="cat-img">
 
         <h1 class="question">donya will you be my valentine?</h1>
@@ -25,7 +37,7 @@
             <button id="noBtn">NON</button>
         </div>
 
-        <p class="subtext" id="subtext">*No* seems a bit shy 😈</p>
+        <p class="subtext" id="subtext" style="display: none;">*No* seems a bit shy 😈</p>
 
         <div id="yayContainer" style="display: none;">
             <img src="https://media.giphy.com/media/26tOZ42Mg6pbTUPHW/giphy.gif" alt="Celebration" class="gif-img">
