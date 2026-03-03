@@ -93,3 +93,50 @@ button {
     border-radius: 15px;
     margin-top: 20px;
 }
+
+/* Mobile blocker overlay */
+.mobile-block {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background-color: #f0c0d0;
+    justify-content: center;
+    align-items: center;
+}
+
+.mobile-block-content {
+    background-color: white;
+    padding: 50px 40px;
+    border-radius: 28px;
+    text-align: center;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+    max-width: 85vw;
+}
+
+.mobile-block-content h1 {
+    font-size: 24px;
+    color: #e91e63;
+    margin: 20px 0;
+    line-height: 1.4;
+    font-family: 'Arial', sans-serif;
+}
+
+.mobile-block-icon {
+    font-size: 60px;
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .mobile-block {
+        display: flex;
+    }
+
+    .card {
+        display: none !important;
+    }
+
+    .subtext {
+        display: none !important;
+    }
+}
