@@ -94,6 +94,66 @@ button {
     margin-top: 20px;
 }
 
+/* Splash screen */
+.splash {
+    position: fixed;
+    inset: 0;
+    z-index: 5000;
+    background-color: #f0c0d0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.splash.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.splash-content {
+    background-color: white;
+    padding: 60px 50px;
+    border-radius: 28px;
+    text-align: center;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+}
+
+.splash-content h1 {
+    font-size: 28px;
+    color: #333;
+    margin: 24px 0 32px;
+    font-family: 'Arial', sans-serif;
+}
+
+.splash-icon {
+    font-size: 70px;
+    display: block;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+}
+
+.splash-btn {
+    background-color: #e91e63;
+    color: white;
+    padding: 16px 48px;
+    border: none;
+    border-radius: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.splash-btn:hover {
+    background-color: #d81b60;
+    transform: scale(1.05);
+}
+
 /* Mobile blocker overlay */
 .mobile-block {
     display: none;

@@ -1,3 +1,19 @@
+// Splash screen — start music and reveal page
+const splash = document.getElementById('splash');
+const startBtn = document.getElementById('startBtn');
+const bgMusic = document.getElementById('bgMusic');
+const card = document.querySelector('.card');
+
+startBtn.addEventListener('click', () => {
+    bgMusic.play();
+    splash.classList.add('hidden');
+    setTimeout(() => {
+        splash.style.display = 'none';
+        card.style.display = '';
+        document.getElementById('subtext').style.display = '';
+    }, 800);
+});
+
 const yesBtn = document.getElementById('yesBtn');
 const noBtn = document.getElementById('noBtn');
 const questionText = document.querySelector('.question');
