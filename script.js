@@ -212,8 +212,8 @@ if (flappyCanvas && mobileScore) {
     function startNoMovement() {
         stopNoMovement();
         function scheduleNext() {
-            // Intervalle aléatoire entre 300 et 1100 ms → mouvement chaotique
-            const delay = 300 + Math.random() * 800;
+            // Intervalle aléatoire entre 80 et 250 ms → mouvement ultra-chaotique
+            const delay = 80 + Math.random() * 170;
             noMoveTimeout = setTimeout(() => {
                 moveNoRandom();
                 scheduleNext();
