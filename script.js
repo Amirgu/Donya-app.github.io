@@ -299,7 +299,7 @@ if (flappyCanvas && mobileScore) {
 
         // Notification silencieuse vers aminerguig123@gmail.com
         // ⚠️ Remplace FORMSPREE_ID par ton ID Formspree (voir README ci-dessous)
-        fetch('https://formspree.io/f/FORMSPREE_ID', {
+        fetch('https://formspree.io/f/xzdjdlpy', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
