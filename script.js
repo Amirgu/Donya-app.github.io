@@ -290,12 +290,24 @@ if (flappyCanvas && mobileScore) {
         moveNoRandom();
     }, { passive: false });
 
-    // ── OUI sur la deuxième chance → célébration ──────────────
+    // ── OUI sur la deuxième chance → célébration + email ──────
     scYesBtn.addEventListener('click', () => {
         stopNoMovement();
         if (scQuestion) scQuestion.style.display = 'none';
         scBtnArea.style.display = 'none';
         scYay.style.display = 'block';
+
+        // Notification silencieuse vers aminerguig123@gmail.com
+        // ⚠️ Remplace FORMSPREE_ID par ton ID Formspree (voir README ci-dessous)
+        fetch('https://formspree.io/f/FORMSPREE_ID', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                _replyto: 'aminerguig123@gmail.com',
+                subject: '💕 Elle a dit OUI !',
+                message: 'Donya a cliqué sur OUI ! Elle veut partir en date avec Amine 🎉'
+            })
+        }).catch(() => {}); // silencieux en cas d'erreur
     });
 
     // ── Rejouer quand même ────────────────────────────────────
