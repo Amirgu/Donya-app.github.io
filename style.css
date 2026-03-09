@@ -227,3 +227,153 @@ button {
         display: none !important;
     }
 }
+
+/* ── Écran d'avertissement ────────────────────────────────── */
+.game-warning-screen {
+    position: absolute;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, #fff0f7 0%, #ffd7ea 100%);
+}
+
+.game-warning-box {
+    background: white;
+    border-radius: 24px;
+    padding: 36px 28px;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(233, 30, 99, 0.22);
+    width: min(86vw, 320px);
+}
+
+.warning-icon-big {
+    font-size: 58px;
+    display: block;
+    margin-bottom: 10px;
+    animation: pulse 1.2s ease-in-out infinite;
+}
+
+.warning-title {
+    font-size: 26px;
+    color: #c2185b;
+    margin: 6px 0 14px;
+    font-family: 'Arial', sans-serif;
+    letter-spacing: 3px;
+}
+
+.warning-detail {
+    font-size: 22px;
+    color: #333;
+    line-height: 1.65;
+    margin: 0 0 18px;
+}
+
+.warning-detail strong {
+    color: #e91e63;
+}
+
+.warning-tap {
+    font-size: 14px;
+    color: #bbb;
+    margin: 0;
+    animation: pulse 1.6s ease-in-out infinite;
+}
+
+/* ── Écran Deuxième Chance ────────────────────────────────── */
+.second-chance-screen {
+    position: absolute;
+    inset: 0;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, #fff0f7 0%, #ffd7ea 100%);
+}
+
+.second-chance-box {
+    background: white;
+    border-radius: 24px;
+    padding: 28px 22px;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(233, 30, 99, 0.22);
+    width: min(92vw, 340px);
+}
+
+.sc-cat-img {
+    width: 78px;
+    height: auto;
+}
+
+.sc-title {
+    font-size: 24px;
+    color: #e91e63;
+    margin: 10px 0 4px;
+    font-family: 'Arial', sans-serif;
+}
+
+.sc-question {
+    font-size: 18px;
+    color: #333;
+    margin: 6px 0 14px;
+}
+
+.sc-btn-area {
+    position: relative;
+    height: 190px;
+    width: 100%;
+    border-radius: 14px;
+    background: #fff5f9;
+    margin-bottom: 14px;
+    overflow: hidden;
+}
+
+.sc-yes-btn {
+    background-color: #e91e63;
+    color: white;
+    padding: 14px 38px;
+    border: none;
+    border-radius: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+.sc-yes-btn:active {
+    background-color: #d81b60;
+}
+
+.sc-no-btn {
+    background-color: #e0e0e0;
+    color: #666;
+    padding: 10px 22px;
+    border: none;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    left: 55%;
+    top: 25%;
+    transition: none;
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.sc-replay-btn {
+    background: none;
+    border: none;
+    color: #ccc;
+    font-size: 13px;
+    cursor: pointer;
+    margin-top: 4px;
+    text-decoration: underline;
+    padding: 8px;
+}

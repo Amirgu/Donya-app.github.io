@@ -20,13 +20,47 @@
     </div>
 
     <div class="mobile-block" id="mobileBlock">
-        <div class="mobile-block-content">
+
+        <!-- ÉCRAN D'AVERTISSEMENT : affiché avant le jeu -->
+        <div id="gameWarning" class="game-warning-screen">
+            <div class="game-warning-box">
+                <span class="warning-icon-big">⚠️</span>
+                <h2 class="warning-title">ATTENTION !</h2>
+                <p class="warning-detail">
+                    Si tu <strong>perds</strong>,<br>
+                    tu pars en date<br>
+                    avec <strong>Amine</strong> 💘
+                </p>
+                <p class="warning-tap">Tape pour commencer →</p>
+            </div>
+        </div>
+
+        <!-- JEU : affiché après l'avertissement -->
+        <div class="mobile-block-content" id="gameContent" style="display:none;">
             <h1>Mini Flappy Love 💗</h1>
             <p class="mobile-game-subtitle">Tape l'écran pour faire voler le cœur.</p>
             <canvas id="flappyCanvas" width="320" height="520" aria-label="Mini jeu flappy bird rose"></canvas>
             <p class="mobile-game-score" id="mobileScore">Score : 0</p>
-            <button id="restartFlappyBtn" class="splash-btn mobile-restart">Rejouer</button>
         </div>
+
+        <!-- DEUXIÈME CHANCE : affiché après game over -->
+        <div id="secondChance" class="second-chance-screen" style="display:none;">
+            <div class="second-chance-box">
+                <img src="https://cdn-icons-png.flaticon.com/512/1864/1864514.png" alt="Cute Cat" class="sc-cat-img">
+                <h2 class="sc-title">Deuxième chance 💕</h2>
+                <p class="sc-question">wanna go on a date with Amine ?</p>
+                <div id="scBtnArea" class="sc-btn-area">
+                    <button id="scYesBtn" class="sc-yes-btn">OUI 💕</button>
+                    <button id="scNoBtn" class="sc-no-btn">NON</button>
+                </div>
+                <div id="scYay" style="display:none;">
+                    <p style="font-size:22px; color:#e91e63; font-weight:bold; margin: 12px 0;">YAY! 🎉</p>
+                    <img src="https://media.giphy.com/media/26tOZ42Mg6pbTUPHW/giphy.gif" alt="Celebration" class="gif-img">
+                </div>
+                <button id="replayBtn" class="sc-replay-btn">Rejouer quand même 🎮</button>
+            </div>
+        </div>
+
     </div>
 
     <div class="card" style="display: none;">
