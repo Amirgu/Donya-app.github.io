@@ -162,12 +162,13 @@ yesBtn.addEventListener('click', () => {
     yayContainer.style.display = 'block';
 });
 
-// Mobile flappy game (pink theme)
+// ─────────────────────────────────────────────────────────────
+// Mobile flappy game — version téléphone 💗
+// ─────────────────────────────────────────────────────────────
 const flappyCanvas = document.getElementById('flappyCanvas');
 const mobileScore = document.getElementById('mobileScore');
-const restartFlappyBtn = document.getElementById('restartFlappyBtn');
 
-if (flappyCanvas && mobileScore && restartFlappyBtn) {
+if (flappyCanvas && mobileScore) {
     const ctx = flappyCanvas.getContext('2d');
     const W = flappyCanvas.width;
     const H = flappyCanvas.height;
@@ -178,12 +179,69 @@ if (flappyCanvas && mobileScore && restartFlappyBtn) {
     const GAP = 140;
     const PIPE_INTERVAL = 1400;
 
-    let bird;
-    let pipes;
-    let score;
-    let gameOver;
-    let started;
-    let lastPipeAt;
+    let bird, pipes, score, gameOver, started, lastPipeAt;
+    let gameOverScheduled = false;
+
+    // ── Éléments deuxième chance ──────────────────────────────
+    const gameWarning = document.getElementById('gameWarning');
+    const gameContent = document.getElementById('gameContent');
+    const secondChance = document.getElementById('secondChance');
+    const scYesBtn = document.getElementById('scYesBtn');
+    const scNoBtn = document.getElementById('scNoBtn');
+    const scBtnArea = document.getElementById('scBtnArea');
+    const scYay = document.getElementById('scYay');
+    const scQuestion = document.querySelector('.sc-question');
+    const replayBtn = document.getElementById('replayBtn');
+
+    let noMoveTimeout = null;
+
+    // Déplace le bouton NON à une position aléatoire dans la zone
+    function moveNoRandom() {
+        const maxX = scBtnArea.offsetWidth - scNoBtn.offsetWidth - 8;
+        const maxY = scBtnArea.offsetHeight - scNoBtn.offsetHeight - 8;
+        if (maxX > 0 && maxY > 0) {
+            scNoBtn.style.left = `${4 + Math.random() * maxX}px`;
+            scNoBtn.style.top = `${4 + Math.random() * maxY}px`;
+        }
+    }
+
+    // Mouvement autonome et erratique du bouton NON (pas besoin de souris)
+    function startNoMovement() {
+        stopNoMovement();
+        function scheduleNext() {
+            // Intervalle aléatoire entre 300 et 1100 ms → mouvement chaotique
+            const delay = 300 + Math.random() * 800;
+            noMoveTimeout = setTimeout(() => {
+                moveNoRandom();
+                scheduleNext();
+            }, delay);
+        }
+        setTimeout(moveNoRandom, 80); // position initiale immédiate
+        scheduleNext();
+    }
+
+    function stopNoMovement() {
+        if (noMoveTimeout) {
+            clearTimeout(noMoveTimeout);
+            noMoveTimeout = null;
+        }
+    }
+
+    function showSecondChance() {
+        gameContent.style.display = 'none';
+        scYay.style.display = 'none';
+        if (scQuestion) scQuestion.style.display = '';
+        scBtnArea.style.display = '';
+        scNoBtn.style.left = '55%';
+        scNoBtn.style.top = '30%';
+        secondChance.style.display = 'flex';
+        startNoMovement();
+    }
+
+    function hideSecondChance() {
+        stopNoMovement();
+        secondChance.style.display = 'none';
+    }
 
     function resetGame() {
         bird = { x: 78, y: H / 2, r: 15, vy: 0 };
@@ -191,10 +249,48 @@ if (flappyCanvas && mobileScore && restartFlappyBtn) {
         score = 0;
         gameOver = false;
         started = false;
+        gameOverScheduled = false;
         lastPipeAt = performance.now();
         mobileScore.textContent = 'Score : 0';
     }
 
+    // ── Tap sur l'avertissement → lancer le jeu ───────────────
+    function dismissWarning() {
+        gameWarning.style.display = 'none';
+        gameContent.style.display = '';
+        started = true;
+        bird.vy = FLAP;
+    }
+
+    gameWarning.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        dismissWarning();
+    }, { passive: false });
+
+    gameWarning.addEventListener('pointerdown', dismissWarning);
+
+    // ── Bouton NON sur la deuxième chance : bougé aussi au toucher ──
+    scNoBtn.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        moveNoRandom();
+    }, { passive: false });
+
+    // ── OUI sur la deuxième chance → célébration ──────────────
+    scYesBtn.addEventListener('click', () => {
+        stopNoMovement();
+        if (scQuestion) scQuestion.style.display = 'none';
+        scBtnArea.style.display = 'none';
+        scYay.style.display = 'block';
+    });
+
+    // ── Rejouer quand même ────────────────────────────────────
+    replayBtn.addEventListener('click', () => {
+        hideSecondChance();
+        gameContent.style.display = '';
+        resetGame();
+    });
+
+    // ── Logique du jeu ────────────────────────────────────────
     function addPipe() {
         const minTop = 70;
         const maxTop = H - GAP - 70;
@@ -254,15 +350,25 @@ if (flappyCanvas && mobileScore && restartFlappyBtn) {
     }
 
     function drawOverlay() {
-        if (!started || gameOver) {
+        if (!started && !gameOver) {
             ctx.fillStyle = 'rgba(255,255,255,0.55)';
             ctx.fillRect(0, 0, W, H);
             ctx.fillStyle = '#c2185b';
             ctx.textAlign = 'center';
             ctx.font = 'bold 24px Arial';
-            ctx.fillText(gameOver ? 'Perdu 💔' : 'Tap pour jouer 💖', W / 2, H / 2 - 12);
+            ctx.fillText('Tap pour jouer 💖', W / 2, H / 2 - 12);
             ctx.font = 'bold 16px Arial';
-            ctx.fillText(gameOver ? 'Utilise Rejouer' : 'Évite les colonnes roses', W / 2, H / 2 + 24);
+            ctx.fillText('Évite les colonnes roses', W / 2, H / 2 + 24);
+            ctx.textAlign = 'start';
+        } else if (gameOver) {
+            ctx.fillStyle = 'rgba(255,255,255,0.60)';
+            ctx.fillRect(0, 0, W, H);
+            ctx.fillStyle = '#c2185b';
+            ctx.textAlign = 'center';
+            ctx.font = 'bold 28px Arial';
+            ctx.fillText('Perdu 💔', W / 2, H / 2 - 22);
+            ctx.font = 'bold 15px Arial';
+            ctx.fillText('Date avec Amine incoming... 💘', W / 2, H / 2 + 14);
             ctx.textAlign = 'start';
         }
     }
@@ -307,6 +413,12 @@ if (flappyCanvas && mobileScore && restartFlappyBtn) {
             }
         }
 
+        // Après game over : afficher la deuxième chance après 1,5 s
+        if (gameOver && !gameOverScheduled) {
+            gameOverScheduled = true;
+            setTimeout(showSecondChance, 1500);
+        }
+
         drawPipes();
         drawBird();
         drawOverlay();
@@ -324,10 +436,6 @@ if (flappyCanvas && mobileScore && restartFlappyBtn) {
         e.preventDefault();
         flap();
     }, { passive: false });
-
-    restartFlappyBtn.addEventListener('click', () => {
-        resetGame();
-    });
 
     resetGame();
     requestAnimationFrame(update);
