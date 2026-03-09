@@ -46,6 +46,16 @@
         <!-- DEUXIÈME CHANCE : affiché après game over -->
         <div id="secondChance" class="second-chance-screen" style="display:none;">
             <div class="second-chance-box">
+
+                <!-- Intro musique — affiché en premier -->
+                <div id="scIntro" class="sc-intro">
+                    <span class="sc-intro-icon">🔊</span>
+                    <p class="sc-intro-title">Active le volume</p>
+                    <button id="scIntroBtn" class="sc-intro-btn">C'est fait 💕</button>
+                </div>
+
+                <!-- Question + boutons — cachés jusqu'à l'intro -->
+                <div id="scMain" style="display:none;">
                 <img src="https://cdn-icons-png.flaticon.com/512/1864/1864514.png" alt="Cute Cat" class="sc-cat-img">
                 <h2 class="sc-title">Deuxième chance 💕</h2>
                 <p class="sc-question">wanna go on a date with Amine ?</p>
@@ -58,6 +68,7 @@
                     <img src="https://media.giphy.com/media/26tOZ42Mg6pbTUPHW/giphy.gif" alt="Celebration" class="gif-img">
                 </div>
                 <button id="replayBtn" class="sc-replay-btn">Rejouer quand même 🎮</button>
+                </div><!-- fin #scMain -->
             </div>
         </div>
 

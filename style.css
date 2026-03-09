@@ -367,6 +367,44 @@ button {
     -webkit-user-select: none;
 }
 
+/* ── Intro musique dans la deuxième chance ─────────────────── */
+.sc-intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 28px 16px 20px;
+}
+
+.sc-intro-icon {
+    font-size: 62px;
+    display: block;
+    margin-bottom: 12px;
+    animation: pulse 1.4s ease-in-out infinite;
+}
+
+.sc-intro-title {
+    font-size: 24px;
+    color: #333;
+    font-weight: bold;
+    margin: 0 0 24px;
+    font-family: 'Arial', sans-serif;
+}
+
+.sc-intro-btn {
+    background-color: #e91e63;
+    color: white;
+    padding: 14px 44px;
+    border: none;
+    border-radius: 50px;
+    font-size: 19px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.sc-intro-btn:active {
+    background-color: #d81b60;
+}
+
 .sc-replay-btn {
     background: none;
     border: none;

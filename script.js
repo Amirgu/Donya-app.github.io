@@ -186,6 +186,9 @@ if (flappyCanvas && mobileScore) {
     const gameWarning = document.getElementById('gameWarning');
     const gameContent = document.getElementById('gameContent');
     const secondChance = document.getElementById('secondChance');
+    const scIntro = document.getElementById('scIntro');
+    const scIntroBtn = document.getElementById('scIntroBtn');
+    const scMain = document.getElementById('scMain');
     const scYesBtn = document.getElementById('scYesBtn');
     const scNoBtn = document.getElementById('scNoBtn');
     const scBtnArea = document.getElementById('scBtnArea');
@@ -229,14 +232,26 @@ if (flappyCanvas && mobileScore) {
 
     function showSecondChance() {
         gameContent.style.display = 'none';
+        // Réinitialiser l'état de la deuxième chance
         scYay.style.display = 'none';
         if (scQuestion) scQuestion.style.display = '';
         scBtnArea.style.display = '';
         scNoBtn.style.left = '55%';
         scNoBtn.style.top = '30%';
+        // Montrer l'intro musique en premier, cacher la question
+        scIntro.style.display = 'flex';
+        scMain.style.display = 'none';
         secondChance.style.display = 'flex';
-        startNoMovement();
     }
+
+    // Bouton "C'est fait" de l'intro → joue la musique et affiche la question
+    scIntroBtn.addEventListener('click', () => {
+        bgMusic.currentTime = 0;
+        bgMusic.play();
+        scIntro.style.display = 'none';
+        scMain.style.display = '';
+        startNoMovement();
+    });
 
     function hideSecondChance() {
         stopNoMovement();
